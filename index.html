@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CÁCERES E CAVACHINI ADVOCACIA - Direito Penal e Familiar</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='38' y='25' width='24' height='50' fill='%23182351'/><rect x='32' y='20' width='36' height='5' fill='%23182351'/><rect x='28' y='15' width='44' height='5' fill='%23182351'/><rect x='32' y='75' width='36' height='5' fill='%23182351'/><rect x='28' y='80' width='44' height='5' fill='%23182351'/></svg>">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sistema de Dublagem/Narração -->
+    <div id="speechSystem" class="speech-system">
+        <button id="speechToggle" class="speech-toggle" title="Ativar/Desativar Narração" aria-label="Botão de narração do site">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        
+        <div id="speechControls" class="speech-controls">
+            <div class="speech-header">
+                <h4>Narração do Site</h4>
+                <button id="closeSpeech" class="close-speech" aria-label="Fechar controles de narração">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="speech-content">
+                <div class="speech-section">
+                    <label>Seção Atual:</label>
+                    <span id="currentSection">Início</span>
+                </div>
+                
+                <div class="speech-controls-row">
+                    <button id="playPause" class="speech-btn primary" aria-label="Reproduzir ou pausar narração">
+                        <i class="fas fa-play"></i>
+                        <span>Reproduzir</span>
+                    </button>
+                    <button id="stopSpeech" class="speech-btn" aria-label="Parar narração">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                    <button id="prevSection" class="speech-btn" aria-label="Seção anterior">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button id="nextSection" class="speech-btn" aria-label="Próxima seção">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+                
+                <div class="speech-settings">
+                    <div class="setting-group">
+                        <label for="speechRate">Velocidade:</label>
+                        <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+                        <span id="rateValue">1.0x</span>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="speechVolume">Volume:</label>
+                        <input type="range" id="speechVolume" min="0" max="1" step="0.1" value="1">
+                        <span id="volumeValue">100%</span>
+                    </div>
+                </div>
+                
+                <div class="speech-progress">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressCurrent">0</span> / <span id="progressTotal">0</span> elementos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">
+                    <img src="imagens/logo.png" alt="CÁCERES E CAVACHINI" class="logo-img">
+                    <span class="logo-text">CÁCERES <span>&</span> CAVACHINI</span>
+                </a>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#areas">Áreas de Atuação</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#valores">Valores</a></li>
+                        <li><a href="#agendamento">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" data-speech-section="Início">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 data-speech-text="Excelência em Advocacia Criminal e Familiar">Excelência em <span class="highlight">Advocacia</span> Criminal e Familiar</h1>
+                    <p data-speech-text="Defesa vigorosa, assessoria estratégica e atendimento humanizado para proteger seus direitos e interesses com a experiência que você merece.">Defesa vigorosa, assessoria estratégica e atendimento humanizado para proteger seus direitos e interesses com a experiência que você merece.</p>
+                    <a href="#agendamento" class="cta-button" data-speech-text="Agendar Consultoria">
+                        <i class="fas fa-calendar-check"></i>
+                        Agendar Consultoria
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-elements">
+                        <div class="floating-element"></div>
+                        <div class="floating-element"></div>
+                        <div class="floating-element"></div>
+                    </div>
+                    <div class="justice-symbol">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Áreas de Atuação -->
+    <section class="areas" id="areas" data-speech-section="Áreas de Atuação">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 data-speech-text="Áreas de Atuação">Áreas de Atuação</h2>
+                <p data-speech-text="Especialização e expertise nas principais áreas do Direito">Especialização e expertise nas principais áreas do Direito</p>
+            </div>
+            <div class="areas-grid">
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 data-speech-text="Direito Penal">Direito Penal</h3>
+                    <p data-speech-text="Defesa técnica comprometida e vigorosa em todas as fases do processo criminal, desde a investigação preliminar até o contencioso judicial.">Defesa técnica comprometida e vigorosa em todas as fases do processo criminal, desde a investigação preliminar até o contencioso judicial.</p>
+                    <a href="#" class="area-link" data-speech-text="Saiba mais sobre Direito Penal">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 data-speech-text="Direito de Família">Direito de Família</h3>
+                    <p data-speech-text="Assessoria completa em questões familiares com sensibilidade e discrição, priorizando o bem-estar de todos os envolvidos.">Assessoria completa em questões familiares com sensibilidade e discrição, priorizando o bem-estar de todos os envolvidos.</p>
+                    <a href="#" class="area-link" data-speech-text="Saiba mais sobre Direito de Família">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 data-speech-text="Defesa Criminal">Defesa Criminal</h3>
+                    <p data-speech-text="Proteção integral dos direitos do cliente com estratégias personalizadas e acompanhamento em todas as instâncias.">Proteção integral dos direitos do cliente com estratégias personalizadas e acompanhamento em todas as instâncias.</p>
+                    <a href="#" class="area-link" data-speech-text="Saiba mais sobre Defesa Criminal">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section class="sobre" id="sobre" data-speech-section="Sobre Nós">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3 data-speech-text="Tradição e Inovação em Advocacia">Tradição e Inovação em Advocacia</h3>
+                    <p data-speech-text="Com anos de experiência no mercado jurídico, o escritório Cáceres e Cavachini Advocacia consolidou-se como referência em Direito Penal e Familiar, oferecendo soluções jurídicas eficazes e personalizadas.">Com anos de experiência no mercado jurídico, o escritório Cáceres e Cavachini Advocacia consolidou-se como referência em Direito Penal e Familiar, oferecendo soluções jurídicas eficazes e personalizadas.</p>
+                    <p data-speech-text="Nossa equipe combina conhecimento técnico aprofundado com uma abordagem humanizada, garantindo que cada cliente receba a atenção e o cuidado que seu caso merece.">Nossa equipe combina conhecimento técnico aprofundado com uma abordagem humanizada, garantindo que cada cliente receba a atenção e o cuidado que seu caso merece.</p>
+                    <div class="mission-box">
+                        <h4 data-speech-text="Nossa Missão">Nossa Missão</h4>
+                        <p data-speech-text="Defender com excelência os direitos de nossos clientes, oferecendo assessoria jurídica de qualidade superior com ética, transparência e compromisso com a justiça.">Defender com excelência os direitos de nossos clientes, oferecendo assessoria jurídica de qualidade superior com ética, transparência e compromisso com a justiça.</p>
+                    </div>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Escritório de Advocacia">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="valores" id="valores" data-speech-section="Nossos Valores">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 data-speech-text="Nossos Valores">Nossos Valores</h2>
+                <p data-speech-text="Os princípios que norteiam nossa atuação profissional">Os princípios que norteiam nossa atuação profissional</p>
+            </div>
+            <div class="valores-grid">
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-speech-text="Ética">Ética</h3>
+                    <p data-speech-text="Conduta profissional pautada pelos mais altos padrões éticos e morais em todas as nossas ações.">Conduta profissional pautada pelos mais altos padrões éticos e morais em todas as nossas ações.</p>
+                </div>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 data-speech-text="Excelência">Excelência</h3>
+                    <p data-speech-text="Busca constante pela perfeição técnica e atualização profissional para oferecer o melhor serviço.">Busca constante pela perfeição técnica e atualização profissional para oferecer o melhor serviço.</p>
+                </div>
+                <div class="valor-card fade-in">
+                    <div class="valor-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-speech-text="Humanização">Humanização</h3>
+                    <p data-speech-text="Atendimento personalizado e empático, compreendendo as necessidades individuais de cada cliente.">Atendimento personalizado e empático, compreendendo as necessidades individuais de cada cliente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento -->
+    <section class="agendamento" id="agendamento" data-speech-section="Contato">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 data-speech-text="Agende sua Consultoria">Agende sua Consultoria</h2>
+                <p data-speech-text="Entre em contato conosco e receba orientação jurídica especializada">Entre em contato conosco e receba orientação jurídica especializada</p>
+            </div>
+            <div class="agendamento-container fade-in">
+                <div class="agendamento-info">
+                    <h3 data-speech-text="Fale Conosco">Fale Conosco</h3>
+                    <p data-speech-text="Estamos prontos para atendê-lo com a dedicação e profissionalismo que seu caso exige. Entre em contato e agende sua consultoria.">Estamos prontos para atendê-lo com a dedicação e profissionalismo que seu caso exige. Entre em contato e agende sua consultoria.</p>
+                    <div class="contato-info">
+                        <div class="contato-item">
+                            <i class="fas fa-phone"></i>
+                            <span data-speech-text="Telefone: (11) 99999-9999">(11) 99999-9999</span>
+                        </div>
+                        <div class="contato-item">
+                            <i class="fas fa-envelope"></i>
+                            <span data-speech-text="E-mail: contato@caceresecavachini.com.br">contato@caceresecavachini.com.br</span>
+                        </div>
+                        <div class="contato-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-speech-text="Localização: São Paulo, SP">São Paulo, SP</span>
+                        </div>
+                        <div class="contato-item">
+                            <i class="fas fa-clock"></i>
+                            <span data-speech-text="Horário de funcionamento: Segunda a Sexta, das 8h às 18h">Seg-Sex: 8h às 18h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="agendamento-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome" data-speech-text="Campo: Nome Completo">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-speech-text="Campo: E-mail">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone" data-speech-text="Campo: Telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="area" data-speech-text="Campo: Área de Interesse">Área de Interesse</label>
+                            <select id="area" name="area" required>
+                                <option value="">Selecione uma área</option>
+                                <option value="penal">Direito Penal</option>
+                                <option value="familia">Direito de Família</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem" data-speech-text="Campo: Mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente seu caso..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" data-speech-text="Enviar Mensagem">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer data-speech-section="Rodapé">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-speech-text="Cáceres e Cavachini">Cáceres e Cavachini</h4>
+                    <p data-speech-text="Escritório de advocacia especializado em Direito Penal e Familiar, oferecendo serviços jurídicos de excelência com ética e profissionalismo.">Escritório de advocacia especializado em Direito Penal e Familiar, oferecendo serviços jurídicos de excelência com ética e profissionalismo.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-speech-text="Áreas de Atuação">Áreas de Atuação</h4>
+                    <a href="#" data-speech-text="Direito Penal">Direito Penal</a>
+                    <a href="#" data-speech-text="Direito de Família">Direito de Família</a>
+                    <a href="#" data-speech-text="Defesa Criminal">Defesa Criminal</a>
+                    <a href="#" data-speech-text="Consultoria Jurídica">Consultoria Jurídica</a>
+                </div>
+                <div class="footer-section">
+                    <h4 data-speech-text="Contato">Contato</h4>
+                    <a href="tel:+5511999999999" data-speech-text="Telefone: (11) 99999-9999">(11) 99999-9999</a>
+                    <a href="mailto:contato@caceresecavachini.com.br" data-speech-text="E-mail: contato@caceresecavachini.com.br">contato@caceresecavachini.com.br</a>
+                    <a href="#" data-speech-text="São Paulo, SP">São Paulo, SP</a>
+                </div>
+                <div class="footer-section">
+                    <h4 data-speech-text="Redes Sociais">Redes Sociais</h4>
+                    <a href="#" data-speech-text="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#" data-speech-text="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" data-speech-text="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-speech-text="Copyright 2025 Cáceres e Cavachini Advocacia. Todos os direitos reservados.">&copy; 2025 Cáceres e Cavachini Advocacia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
