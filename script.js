@@ -66,6 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // Pegar o botão de envio
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            
             // Validação dos campos
             const nome = document.getElementById('nome');
             const telefone = document.getElementById('telefone');
@@ -80,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
+            
+            // Desabilitar o botão e alterar o texto
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             
             const formData = {
                 nome: nome.value.trim(),
@@ -100,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (response.ok) {
                     alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
-                    form.reset();
+                    form.reset(); // Limpar todos os campos do formulário
                 } else {
                     const errorText = await response.text();
                     console.error('Erro do servidor:', errorText);
@@ -125,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         if (responseAlt.ok) {
                             alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
-                            form.reset();
+                            form.reset(); // Limpar todos os campos do formulário
                             return;
                         }
                     } catch (altError) {
@@ -134,6 +142,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 alert('Erro ao enviar solicitação. Tente novamente ou entre em contato por telefone: (15) 99697-2911');
+            } finally {
+                // Sempre reabilitar o botão e restaurar o texto original
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
             }
         });
     }
