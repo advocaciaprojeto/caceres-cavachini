@@ -1,3 +1,144 @@
+// Máscara para telefone
+function formatPhone(value) {
+    // Remove tudo que não é dígito
+    let cleaned = value.replace(/\D/g, '');
+    
+    // Limita a 11 dígitos (DDD + 9 dígitos)
+    cleaned = cleaned.substring(0, 11);
+    
+    // Aplica a máscara baseada no tamanho
+    if (cleaned.length <= 2) {
+        return cleaned;
+    } else if (cleaned.length <= 6) {
+        return cleaned.replace(/(\d{2})(\d{0,4})/, '($1) $2');
+    } else if (cleaned.length <= 10) {
+        return cleaned.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else {
+        return cleaned.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    }
+}
+
+// Aplicar máscara no campo telefone
+document.addEventListener('DOMContentLoaded', function() {
+    const telefoneInput = document.getElementById('telefone');
+    
+    if (telefoneInput) {
+        telefoneInput.addEventListener('input', function(e) {
+            const cursorPosition = e.target.selectionStart;
+            const oldValue = e.target.value;
+            const newValue = formatPhone(e.target.value);
+            
+            e.target.value = newValue;
+            
+            // Ajusta a posição do cursor para permitir edição natural
+            if (newValue.length < oldValue.length) {
+                // Se o texto ficou menor (deletou algo), mantém cursor na posição
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
+            }
+        });
+        
+        // Permite deletar caracteres especiais
+        telefoneInput.addEventListener('keydown', function(e) {
+            // Permite backspace, delete, tab, escape, enter
+            if ([8, 9, 27, 13, 46].indexOf(e.keyCode) !== -1 ||
+                // Permite Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                (e.keyCode === 65 && e.ctrlKey === true) ||
+                (e.keyCode === 67 && e.ctrlKey === true) ||
+                (e.keyCode === 86 && e.ctrlKey === true) ||
+                (e.keyCode === 88 && e.ctrlKey === true) ||
+                // Permite setas
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            // Permite apenas números
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }
+});
+
+// Envio do formulário para webhook
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('agendamentoForm');
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validação dos campos
+            const nome = document.getElementById('nome');
+            const telefone = document.getElementById('telefone');
+            const area = document.getElementById('area');
+            
+            if (!nome || !telefone || !area) {
+                alert('Erro: Campos do formulário não encontrados.');
+                return;
+            }
+            
+            if (!nome.value.trim() || !telefone.value.trim() || !area.value) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            const formData = {
+                nome: nome.value.trim(),
+                telefone: telefone.value.trim(),
+                area: area.value
+            };
+            
+            try {
+                const response = await fetch('https://lara-n8n.e8hydi.easypanel.host/webhook/96e6f0bc-ffda-49b5-bc53-96c3f9c3d696', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors',
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
+                    form.reset();
+                } else {
+                    const errorText = await response.text();
+                    console.error('Erro do servidor:', errorText);
+                    throw new Error(`Erro ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error('Erro completo:', error);
+                
+                // Se for erro de CORS, tenta uma abordagem alternativa
+                if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                    try {
+                        // Alternativa usando form data para evitar CORS preflight
+                        const formDataAlt = new FormData();
+                        formDataAlt.append('nome', formData.nome);
+                        formDataAlt.append('telefone', formData.telefone);
+                        formDataAlt.append('area', formData.area);
+                        
+                        const responseAlt = await fetch('https://lara-n8n.e8hydi.easypanel.host/webhook/96e6f0bc-ffda-49b5-bc53-96c3f9c3d696', {
+                            method: 'POST',
+                            body: formDataAlt
+                        });
+                        
+                        if (responseAlt.ok) {
+                            alert('Solicitação enviada com sucesso! Entraremos em contato em breve.');
+                            form.reset();
+                            return;
+                        }
+                    } catch (altError) {
+                        console.error('Erro na alternativa:', altError);
+                    }
+                }
+                
+                alert('Erro ao enviar solicitação. Tente novamente ou entre em contato por telefone: (15) 99697-2911');
+            }
+        });
+    }
+});
+
 // Menu Mobile
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.getElementById('nav');

@@ -256,18 +256,14 @@
                     </div>
                 </div>
                 <div class="agendamento-form">
-                    <form>
+                    <form id="agendamentoForm">
                         <div class="form-group">
                             <label for="nome" data-speech-text="Campo: Nome Completo">Nome Completo</label>
                             <input type="text" id="nome" name="nome" required>
                         </div>
                         <div class="form-group">
-                            <label for="email" data-speech-text="Campo: E-mail">E-mail</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
                             <label for="telefone" data-speech-text="Campo: Telefone">Telefone</label>
-                            <input type="tel" id="telefone" name="telefone" required>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
                         </div>
                         <div class="form-group">
                             <label for="area" data-speech-text="Campo: Área de Interesse">Área de Interesse</label>
@@ -278,13 +274,9 @@
                                 <option value="outros">Outros</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="mensagem" data-speech-text="Campo: Mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente seu caso..."></textarea>
-                        </div>
-                        <button type="submit" class="cta-button" data-speech-text="Enviar Mensagem">
+                        <button type="submit" class="cta-button" data-speech-text="Enviar Solicitação">
                             <i class="fas fa-paper-plane"></i>
-                            Enviar Mensagem
+                            Enviar Solicitação
                         </button>
                     </form>
                 </div>
