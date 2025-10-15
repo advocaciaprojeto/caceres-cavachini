@@ -65,6 +65,64 @@ body {
     50% { transform: translateY(-20px) rotate(180deg); }
 }
 
+/* Animação do slogan - revelar texto da esquerda para direita */
+@keyframes sloganReveal {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-10px);
+    }
+    15% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+    70% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+    85% {
+        opacity: 1;
+        clip-path: inset(0 0 0 100%);
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 0;
+        clip-path: inset(0 0 0 100%);
+        transform: translateX(10px);
+    }
+}
+
+/* Animação do slogan - revelar texto da esquerda para direita */
+@keyframes sloganReveal {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-10px);
+    }
+    15% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+    70% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+    }
+    85% {
+        opacity: 1;
+        clip-path: inset(0 0 0 100%);
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 0;
+        clip-path: inset(0 0 0 100%);
+        transform: translateX(10px);
+    }
+}
+
 /* Header Estilo Bick Law */
 header {
     position: fixed;
@@ -141,6 +199,10 @@ header {
     line-height: 1;
     margin-top: -2px;
     padding-left: 3.2rem;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: sloganReveal 12s ease-in-out infinite;
 }
 
 /* Menu Hamburger */
@@ -773,6 +835,8 @@ footer {
         font-size: 0.6rem;
         letter-spacing: 0.3px;
         padding-left: 0.5rem;
+        /* Manter animação no mobile */
+        animation: sloganReveal 12s ease-in-out infinite;
     }
 
     /* Header mobile improvements */
@@ -821,7 +885,8 @@ footer {
     .logo-slogan {
         font-size: 0.55rem;
         letter-spacing: 0.2px;
-        
+        /* Manter animação no mobile pequeno */
+        animation: sloganReveal 12s ease-in-out infinite;
     }
 
     .container {
