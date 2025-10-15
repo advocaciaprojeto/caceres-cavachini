@@ -107,6 +107,11 @@ header {
     width: auto;
 }
 
+.logo-img2{
+    height: 200px;
+    width: auto;
+}
+
 .logo-content {
     display: flex;
     flex-direction: column;
@@ -288,7 +293,7 @@ nav a:hover {
     transform: translate(-50%, -50%);
     width: 300px;
     height: 300px;
-    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+    background: linear-gradient(135deg, #1C3258 0%, #1C3258 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
