@@ -107,16 +107,35 @@ header {
     width: auto;
 }
 
+.logo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
 .logo-text {
     font-family: 'Times New Roman', regular;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--azul-escuro);
     letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .logo-text span {
     color: var(--azul-escuro);
+}
+
+.logo-slogan {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--cinza-medio);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: -2px;
+    padding-left: 3.2rem;
 }
 
 /* Menu Hamburger */
@@ -745,6 +764,12 @@ footer {
         font-size: 1.4rem;
     }
 
+    .logo-slogan {
+        font-size: 0.6rem;
+        letter-spacing: 0.3px;
+        padding-left: 0.5rem;
+    }
+
     /* Header mobile improvements */
     header {
         padding: 0.75rem 0;
@@ -786,6 +811,12 @@ footer {
 
     .logo-text {
         font-size: 1.2rem;
+    }
+
+    .logo-slogan {
+        font-size: 0.55rem;
+        letter-spacing: 0.2px;
+        
     }
 
     .container {
